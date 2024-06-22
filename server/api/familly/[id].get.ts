@@ -8,11 +8,20 @@ export default defineEventHandler(async (event) => {
     };
   }
   const id = +idParams;
-  if (!id || id === 0) {
+  if (id == null) {
     return {
       success: false,
       message: "Unable to convert to id",
       words: [],
+    };
+  }
+
+  if (id === 0) {
+    const words = await prisma.word.findMany();
+    return {
+      success: true,
+      message: "Returning all words",
+      words,
     };
   }
 

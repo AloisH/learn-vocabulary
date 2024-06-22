@@ -102,11 +102,11 @@ const familyForm = useForm({
 });
 
 const onSubmitFamily = familyForm.handleSubmit(async (values) => {
-    const result = await useFetch('/api/family', {
+    const result = await $fetch('/api/family', {
         method: "POST",
         body: values,
     })
-    if (result.data.value?.success) {
+    if (result?.success) {
         await refreshFamily();
     }
 });
