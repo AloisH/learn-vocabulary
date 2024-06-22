@@ -11,6 +11,8 @@
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.0",
     "@radix-icons/vue": "^1.0.0",
+    "@vee-validate/zod": "^4.13.1",
+    "@vueuse/core": "^10.11.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "nuxt": "^3.12.2",
@@ -19,8 +21,10 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul-vue": "^0.2.0",
+    "vee-validate": "^4.13.1",
     "vue": "^3.4.29",
-    "vue-router": "^4.4.0"
+    "vue-router": "^4.4.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@prisma/client": "^5.15.1",
