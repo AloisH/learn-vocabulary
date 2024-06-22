@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Word {
+  id             Int        @id @default(autoincrement())
+  word           String
+  translatedWord String
+  WordFamily     WordFamily @relation(fields: [wordFamilyId], references: [id])
+  wordFamilyId   Int
+}
+
+model WordFamily {
+  id     Int    @id @default(autoincrement())
+  family String @unique
+  word   Word[]
+}
