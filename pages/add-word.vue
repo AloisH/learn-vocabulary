@@ -8,7 +8,7 @@
             <DrawerTrigger as-child>
                 <Button class="h-32 text-lg w-full" :onClick="async () => loadWordsOfFamilly(family.id)">{{
                     family.family
-                }}</Button>
+                    }}</Button>
             </DrawerTrigger>
             <DrawerContent class="pb-32 px-4">
                 <div class="flex justify-between pb-8">
@@ -39,7 +39,7 @@
                 <FamilyDrawerWord :words="words" :family="family" @reload-words="loadWordsOfFamilly(family.id)" />
             </DrawerContent>
         </Drawer>
-        <Drawer :open="openCreateNewFamily">
+        <Drawer>
             <DrawerTrigger as-child>
                 <Button class="h-32 text-lg w-full">+ New word family</Button>
             </DrawerTrigger>
@@ -92,7 +92,6 @@ export type Word = {
 };
 
 const words = ref<Word[]>([]);
-const openCreateNewFamily = ref<boolean>(true);
 
 const { data: familys, refresh: refreshFamily } = await useFetch('/api/family');
 
