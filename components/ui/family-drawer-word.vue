@@ -95,6 +95,7 @@ createWordForm.setFieldValue('id', props.family.id);
 
 const onSubmitCreateWord = createWordForm.handleSubmit(async (values) => {
     createWordForm.resetForm();
+    createWordForm.setFieldValue('id', props.family.id);
     const result = await $fetch(`/api/word`, {
         method: 'post',
         body: values,

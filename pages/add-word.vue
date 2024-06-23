@@ -6,7 +6,8 @@
         <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Add new Vocabulary</h1>
         <Drawer v-for="family in familys">
             <DrawerTrigger as-child>
-                <Button class="h-32 text-lg w-full" :onClick="async () => loadWordsOfFamilly(family.id)">{{ family.family
+                <Button class="h-32 text-lg w-full" :onClick="async () => loadWordsOfFamilly(family.id)">{{
+                    family.family
                 }}</Button>
             </DrawerTrigger>
             <DrawerContent class="pb-32 px-4">
@@ -45,8 +46,10 @@
             <DrawerContent class="pb-32 px-4">
                 <DrawerHeader>
                     <DrawerTitle>
-                        Add a family
+                        Family
                     </DrawerTitle>
+                    <DrawerDescription>Add a new family</DrawerDescription>
+
                 </DrawerHeader>
                 <form @submit="onSubmitFamily">
                     <FormField v-slot="{ componentField }" name="family">

@@ -1,0 +1,30 @@
+version: "3"
+services:
+  database:
+    image: "postgres:16.2-bullseye"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - global-net
+    volumes:
+      - "learn-vocabulary:/db"
+    container_name: learn-vocabulary-database
+  learn-vocabulary:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    networks:
+      - global-net
+    environment:
+      DATABASE_URL: postgresql://postgres:password@database:5432/postgres?schema=public
+
+volumes:
+  learn-vocabulary:
+
+networks:
+  global-net:
