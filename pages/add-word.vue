@@ -39,7 +39,7 @@
                 <FamilyDrawerWord :words="words" :family="family" @reload-words="loadWordsOfFamilly(family.id)" />
             </DrawerContent>
         </Drawer>
-        <Drawer>
+        <Drawer :open="openCreateNewFamily">
             <DrawerTrigger as-child>
                 <Button class="h-32 text-lg w-full">+ New word family</Button>
             </DrawerTrigger>
@@ -83,7 +83,6 @@
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 import * as z from "zod";
-import FamilyDrawerWord from '~/components/ui/family-drawer-word.vue';
 
 export type Word = {
     id: number;
@@ -93,6 +92,7 @@ export type Word = {
 };
 
 const words = ref<Word[]>([]);
+const openCreateNewFamily = ref<boolean>(true);
 
 const { data: familys, refresh: refreshFamily } = await useFetch('/api/family');
 

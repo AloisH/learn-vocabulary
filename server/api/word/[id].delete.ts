@@ -1,3 +1,5 @@
+import prisma from "~/lib/prisma";
+
 export default defineEventHandler(async (event) => {
   const idParams = getRouterParam(event, "id");
   if (!idParams) {
