@@ -12,8 +12,10 @@
         <div class="h-full" v-if="words && words?.words.length !== 0">
             <div class="flex flex-col h-full">
                 <div class="h-full flex items-center justify-center">
-                    <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-                        {{ words.words[currentIndexWordToFind].word }}
+                    <h1
+                        class="flex items-center justify-center w-full scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+                        {{ game === 'normal' ? words.words[currentIndexWordToFind].word :
+                            words.words[currentIndexWordToFind].translatedWord }}
                     </h1>
                 </div>
                 <div class="flex justify-center">
@@ -28,21 +30,30 @@
                 </div>
                 <div class="px-4 py-4 flex flex-col w-full gap-4">
                     <div class="flex w-full gap-4">
-                        <Button :variant="buttonVariant1" :onclick="() => onClickWord(0)" class='h-32 w-full'>
-                            {{ words.words[wordsIndex[0]].translatedWord }}
+                        <Button :variant="buttonVariant1" :onclick="() => onClickWord(0)"
+                            class='h-32 w-1/2 whitespace-normal'>
+                            {{ game === 'normal' ? words.words[wordsIndex[0]].translatedWord :
+                                words.words[wordsIndex[0]].word }}
                         </Button>
 
-                        <Button :variant="buttonVariant2" :onclick="() => onClickWord(1)" class='h-32 w-full'>
-                            {{ words.words[wordsIndex[1]].translatedWord }}
+                        <Button :variant="buttonVariant2" :onclick="() => onClickWord(1)"
+                            class='h-32 w-1/2 whitespace-normal'>
+                            {{ game === 'normal' ? words.words[wordsIndex[1]].translatedWord :
+                                words.words[wordsIndex[1]].word }}
                         </Button>
                     </div>
                     <div class="flex gap-4">
-                        <Button :variant="buttonVariant3" :onclick="() => onClickWord(2)" class='h-32 w-full'>
-                            {{ words.words[wordsIndex[2]].translatedWord }}
+                        <Button :variant="buttonVariant3" :onclick="() => onClickWord(2)"
+                            class='h-32 w-1/2 whitespace-normal'>
+                            {{ game === 'normal' ? words.words[wordsIndex[2]].translatedWord :
+                                words.words[wordsIndex[2]].word }}
                         </Button>
 
-                        <Button :variant="buttonVariant4" :onclick="() => onClickWord(3)" class='h-32 w-full'>
-                            {{ words.words[wordsIndex[3]].translatedWord }}
+                        <Button :variant="buttonVariant4" :onclick="() => onClickWord(3)"
+                            class='h-32 w-1/2 whitespace-normal'>
+
+                            {{ game === 'normal' ? words.words[wordsIndex[3]].translatedWord :
+                                words.words[wordsIndex[3]].word }}
                         </Button>
                     </div>
                 </div>
@@ -67,6 +78,7 @@ enum Correct {
 const route = useRoute();
 
 const id = +route.params.id;
+const game: 'normal' | 'reverse' = route.params.game as 'normal' | 'reverse';
 const { data: words } = await useFetch(`/api/familly/${id}`, {
     method: 'get'
 });

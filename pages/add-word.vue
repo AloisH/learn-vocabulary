@@ -10,7 +10,7 @@
                     family.family
                     }}</Button>
             </DrawerTrigger>
-            <DrawerContent class="pb-32 px-4">
+            <DrawerContent class="pb-4 px-4">
                 <div class="flex justify-between pb-8">
                     <div>
                         <DrawerTitle>{{ family.family }}</DrawerTitle>
@@ -43,7 +43,7 @@
             <DrawerTrigger as-child>
                 <Button class="h-32 text-lg w-full">+ New word family</Button>
             </DrawerTrigger>
-            <DrawerContent class="pb-32 px-4">
+            <DrawerContent class="pb-4 px-4">
                 <DrawerHeader>
                     <DrawerTitle>
                         Family

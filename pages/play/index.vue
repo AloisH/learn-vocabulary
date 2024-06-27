@@ -9,21 +9,37 @@
                 <span>
                     Play
                 </span>
-                <Button variant="secondary">Select game mode</Button>
+                <Select v-model="gamemode">
+                    <SelectTrigger>
+                        <SelectValue></SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectItem value="normal">
+                                Normal
+                            </SelectItem>
+                            <SelectItem value="reverse">
+                                Reverse
+                            </SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
             </h1>
             <NuxtLink class="w-full" v-for="family in familys"
-                :to='{ name: "play-game-id", params: { id: family.id, game: "normal" } }'>
+                :to='{ name: "play-game-id", params: { id: family.id, game: gamemode } }'>
                 <Button class="h-32 text-lg w-full">
                     {{ family.family }}
                 </Button>
             </NuxtLink>
-            <NuxtLink class="w-full" :to='{ name: "play-game-id", params: { id: 0, game: "normal" } }'>
+            <NuxtLink class="w-full" :to='{ name: "play-game-id", params: { id: 0, game: gamemode } }'>
                 <Button class="h-32 text-lg w-full">All Family</Button>
             </NuxtLink>
         </div>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const { data: familys, refresh: refreshFamily } = await useFetch('/api/family');
+
+const gamemode = ref<string>('normal');
 </script>
